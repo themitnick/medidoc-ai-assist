@@ -1,22 +1,65 @@
 import { cn } from "@/lib/utils";
 import { Button } from "./button";
-import { Heart, Users, FileText, Brain, AlertTriangle, Settings, LogOut } from "lucide-react";
+import { Heart, Users, FileText, Brain, AlertTriangle, Settings, LogOut, Activity, Home, User } from "lucide-react";
+import { UserRole } from "@/types/auth";
 
 interface NavigationProps {
   activeTab: string;
   onTabChange: (tab: string) => void;
   onLogout: () => void;
+  userRole: UserRole;
 }
 
-export const Navigation = ({ activeTab, onTabChange, onLogout }: NavigationProps) => {
-  const navItems = [
-    { id: "dashboard", label: "Tableau de bord", icon: Heart },
-    { id: "patients", label: "Patients", icon: Users },
-    { id: "dossiers", label: "Dossiers", icon: FileText },
-    { id: "diagnostic", label: "IA Diagnostic", icon: Brain },
-    { id: "interactions", label: "Interactions", icon: AlertTriangle },
-    { id: "settings", label: "Paramètres", icon: Settings },
-  ];
+export const Navigation = ({ activeTab, onTabChange, onLogout, userRole }: NavigationProps) => {
+  const getNavItems = () => {
+    const baseItems = [
+      { id: "dashboard", label: "Tableau de bord", icon: Heart },
+      { id: "settings", label: "Paramètres", icon: Settings },
+    ];
+
+    switch (userRole) {
+      case "medecin":
+        return [
+          { id: "dashboard", label: "Tableau de bord", icon: Heart },
+          { id: "patients", label: "Patients", icon: Users },
+          { id: "dossiers", label: "Dossiers", icon: FileText },
+          { id: "diagnostic", label: "IA Diagnostic", icon: Brain },
+          { id: "interactions", label: "Interactions", icon: AlertTriangle },
+          { id: "settings", label: "Paramètres", icon: Settings },
+        ];
+      
+      case "infirmier":
+        return [
+          { id: "dashboard", label: "Tableau de bord", icon: Heart },
+          { id: "patients", label: "Patients", icon: Users },
+          { id: "dossiers", label: "Dossiers", icon: FileText },
+          { id: "soins", label: "Soins", icon: Activity },
+          { id: "settings", label: "Paramètres", icon: Settings },
+        ];
+      
+      case "admin":
+        return [
+          { id: "dashboard", label: "Tableau de bord", icon: Heart },
+          { id: "patients", label: "Patients", icon: Users },
+          { id: "dossiers", label: "Dossiers", icon: FileText },
+          { id: "interactions", label: "Interactions", icon: AlertTriangle },
+          { id: "settings", label: "Paramètres", icon: Settings },
+        ];
+      
+      case "patient":
+        return [
+          { id: "dashboard", label: "Mon Espace", icon: Home },
+          { id: "consultations", label: "Mes Consultations", icon: FileText },
+          { id: "informations", label: "Mes Informations", icon: User },
+          { id: "settings", label: "Paramètres", icon: Settings },
+        ];
+      
+      default:
+        return baseItems;
+    }
+  };
+
+  const navItems = getNavItems();
 
   return (
     <nav className="bg-card border-r border-border h-screen w-64 flex flex-col">
@@ -26,7 +69,7 @@ export const Navigation = ({ activeTab, onTabChange, onLogout }: NavigationProps
             <Heart className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-foreground">MediDoc AI</h1>
+            <h1 className="text-xl font-bold text-foreground">FER MediDoc AI</h1>
             <p className="text-sm text-muted-foreground">Assistant Médical</p>
           </div>
         </div>

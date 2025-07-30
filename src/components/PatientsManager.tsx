@@ -5,12 +5,18 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Search, Plus, User, Phone, Mail, AlertTriangle } from "lucide-react";
 import { mockPatients, type Patient } from "@/data/mockData";
+import { NouveauPatient } from "@/components/NouveauPatient";
 
 export const PatientsManager = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedPatient, setSelectedPatient] = useState<Patient | null>(null);
+  const [patients, setPatients] = useState<Patient[]>(mockPatients);
 
-  const filteredPatients = mockPatients.filter(patient =>
+  const handlePatientAdded = (newPatient: Patient) => {
+    setPatients([...patients, newPatient]);
+  };
+
+  const filteredPatients = patients.filter(patient =>
     `${patient.prenom} ${patient.nom}`.toLowerCase().includes(searchTerm.toLowerCase()) ||
     patient.numeroSecu.includes(searchTerm)
   );
@@ -25,13 +31,10 @@ export const PatientsManager = () => {
         <div>
           <h2 className="text-3xl font-bold tracking-tight">Gestion des Patients</h2>
           <p className="text-muted-foreground">
-            {mockPatients.length} patients enregistrés
+            {patients.length} patients enregistrés
           </p>
         </div>
-        <Button className="gap-2">
-          <Plus className="w-4 h-4" />
-          Nouveau Patient
-        </Button>
+        <NouveauPatient onPatientAdded={handlePatientAdded} />
       </div>
 
       <div className="grid gap-6 lg:grid-cols-3">

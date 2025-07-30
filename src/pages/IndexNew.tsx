@@ -8,7 +8,6 @@ import { InteractionsManager } from "@/components/InteractionsManager";
 import { DossiersMedicaux } from "@/components/DossiersMedicaux";
 import { Parametres } from "@/components/Parametres";
 import { PatientPortail } from "@/components/PatientPortail";
-import { PlanificationSoins } from "@/components/PlanificationSoins";
 import { User } from "@/types/auth";
 
 const Index = () => {
@@ -64,7 +63,7 @@ const Index = () => {
       case "settings":
         return <Parametres userRole={user.role} />;
       case "soins":
-        return user.role === "infirmier" ? <PlanificationSoins userRole={user.role} /> : <div className="p-6"><h2 className="text-2xl font-bold">Accès non autorisé</h2></div>;
+        return user.role === "infirmier" ? <div className="p-6"><h2 className="text-2xl font-bold">Gestion des Soins - En développement</h2></div> : <div className="p-6"><h2 className="text-2xl font-bold">Accès non autorisé</h2></div>;
       default:
         return <Dashboard userRole={user.role} />;
     }

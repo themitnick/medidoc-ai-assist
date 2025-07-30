@@ -4,9 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Heart, User, Lock, Shield } from "lucide-react";
+import { User as UserType, mockUsers } from "@/types/auth";
 
 interface LoginFormProps {
-  onLogin: (credentials: { email: string; password: string }) => void;
+  onLogin: (user: UserType) => void;
 }
 
 export const LoginForm = ({ onLogin }: LoginFormProps) => {
@@ -21,14 +22,22 @@ export const LoginForm = ({ onLogin }: LoginFormProps) => {
     // Simulate authentication
     await new Promise(resolve => setTimeout(resolve, 1500));
     
-    onLogin({ email, password });
+    // Check credentials
+    const user = mockUsers[email];
+    if (user && password === "demo123") {
+      onLogin(user);
+    } else {
+      // Handle login error
+      console.error("Invalid credentials");
+    }
     setIsLoading(false);
   };
 
   const demoCredentials = [
-    { role: "Médecin", email: "dr.dupont@medidoc.fr", password: "demo123" },
-    { role: "Infirmier", email: "infirmier@medidoc.fr", password: "demo123" },
-    { role: "Admin", email: "admin@medidoc.fr", password: "demo123" }
+    { role: "Médecin", email: "dr.kone@medidoc.ci", password: "demo123" },
+    { role: "Infirmier", email: "infirmier@medidoc.ci", password: "demo123" },
+    { role: "Admin", email: "admin@medidoc.ci", password: "demo123" },
+    { role: "Patient", email: "patient@medidoc.ci", password: "demo123" }
   ];
 
   return (
@@ -41,7 +50,7 @@ export const LoginForm = ({ onLogin }: LoginFormProps) => {
               <Heart className="w-7 h-7 text-white" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-foreground">MediDoc AI</h1>
+              <h1 className="text-3xl font-bold text-foreground">FER MediDoc AI</h1>
               <p className="text-muted-foreground">Assistant Médical Intelligent</p>
             </div>
           </div>
@@ -96,7 +105,7 @@ export const LoginForm = ({ onLogin }: LoginFormProps) => {
                     <Input
                       id="email"
                       type="email"
-                      placeholder="votre.email@etablissement.fr"
+                      placeholder="votre.email@etablissement.ci"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       className="pl-10"
