@@ -3,6 +3,9 @@ export interface Patient {
   nom: string;
   prenom: string;
   dateNaissance: string;
+  age?: number;
+  poids?: number;
+  taille?: number;
   sexe: "M" | "F";
   telephone: string;
   email: string;
@@ -10,6 +13,7 @@ export interface Patient {
   numeroSecu: string;
   allergie?: string[];
   antecedents?: string[];
+  conditions?: string[];
   traitements?: string[];
 }
 
@@ -54,7 +58,11 @@ export interface MedicamentInfo {
   nom: string;
   dci: string;
   classe: string;
+  categorie?: string;
   posologie: string;
+  dosage?: string;
+  forme?: string;
+  voieAdministration?: string;
   contrindications: string[];
   effetsSecondaires: string[];
   interactions: string[];
@@ -68,6 +76,9 @@ export const mockPatients: Patient[] = [
     nom: "Kouamé",
     prenom: "Adjoua",
     dateNaissance: "1985-03-15",
+    age: 39,
+    poids: 65,
+    taille: 165,
     sexe: "F",
     telephone: "0123456789",
     email: "adjoua.kouame@email.ci",
@@ -75,6 +86,7 @@ export const mockPatients: Patient[] = [
     numeroSecu: "2850315123456",
     allergie: ["Pénicilline", "Aspirine"],
     antecedents: ["Hypertension", "Diabète type 2"],
+    conditions: ["Hypertension artérielle", "Diabète type 2"],
     traitements: ["Metformine 850mg", "Lisinopril 10mg"]
   },
   {
@@ -82,6 +94,9 @@ export const mockPatients: Patient[] = [
     nom: "Traoré",
     prenom: "Mamadou",
     dateNaissance: "1978-07-22",
+    age: 46,
+    poids: 78,
+    taille: 175,
     sexe: "M",
     telephone: "0987654321",
     email: "mamadou.traore@email.ci",
@@ -89,6 +104,7 @@ export const mockPatients: Patient[] = [
     numeroSecu: "1780722234567",
     allergie: ["Latex"],
     antecedents: ["Asthme"],
+    conditions: ["Asthme bronchique"],
     traitements: ["Ventoline", "Symbicort"]
   },
   {
@@ -96,6 +112,9 @@ export const mockPatients: Patient[] = [
     nom: "Ouattara",
     prenom: "Fatou",
     dateNaissance: "1992-12-03",
+    age: 32,
+    poids: 58,
+    taille: 160,
     sexe: "F",
     telephone: "0456789123",
     email: "fatou.ouattara@email.ci",
@@ -103,6 +122,7 @@ export const mockPatients: Patient[] = [
     numeroSecu: "2921203345678",
     allergie: [],
     antecedents: ["Migraine chronique"],
+    conditions: ["Migraine avec aura"],
     traitements: ["Sumatriptan"]
   }
 ];
@@ -270,6 +290,10 @@ export const mockMedicaments: MedicamentInfo[] = [
     nom: "Aspirine 500mg",
     dci: "Acide acétylsalicylique",
     classe: "AINS - Antiagrégant plaquettaire",
+    categorie: "Cardiovasculaire",
+    dosage: "500mg",
+    forme: "Comprimé",
+    voieAdministration: "Orale",
     posologie: "500mg à 1g, 1 à 3 fois par jour",
     contrindications: ["Allergie aux salicylés", "Ulcère gastroduodénal", "Insuffisance rénale sévère"],
     effetsSecondaires: ["Troubles digestifs", "Hémorragies", "Acouphènes"],
@@ -281,6 +305,10 @@ export const mockMedicaments: MedicamentInfo[] = [
     nom: "Paracétamol 1g",
     dci: "Paracétamol",
     classe: "Antalgique - Antipyrétique",
+    categorie: "Antalgiques",
+    dosage: "1g",
+    forme: "Comprimé effervescent",
+    voieAdministration: "Orale",
     posologie: "1g, 1 à 4 fois par jour (max 4g/j)",
     contrindications: ["Insuffisance hépatocellulaire", "Allergie au paracétamol"],
     effetsSecondaires: ["Hépatotoxicité (surdosage)", "Rares réactions allergiques"],
@@ -292,12 +320,61 @@ export const mockMedicaments: MedicamentInfo[] = [
     nom: "Metformine 850mg",
     dci: "Metformine HCl",
     classe: "Antidiabétique - Biguanide",
+    categorie: "Cardiovasculaire",
+    dosage: "850mg",
+    forme: "Comprimé pelliculé",
+    voieAdministration: "Orale",
     posologie: "850mg, 2 à 3 fois par jour aux repas",
     contrindications: ["Insuffisance rénale", "Acidose métabolique", "Insuffisance cardiaque"],
     effetsSecondaires: ["Troubles digestifs", "Acidose lactique (rare)", "Carence en B12"],
     interactions: ["Contraste iodé", "Alcool", "Diurétiques"],
     grossesse: "Avec précaution",
     allaitement: "Avec précaution"
+  },
+  {
+    nom: "Amoxicilline 1g",
+    dci: "Amoxicilline",
+    classe: "Antibiotique - Pénicilline",
+    categorie: "Antibiotiques",
+    dosage: "1g",
+    forme: "Gélule",
+    voieAdministration: "Orale",
+    posologie: "1g, 2 à 3 fois par jour",
+    contrindications: ["Allergie aux pénicillines", "Mononucléose infectieuse"],
+    effetsSecondaires: ["Troubles digestifs", "Réactions allergiques", "Candidoses"],
+    interactions: ["Allopurinol", "Contraceptifs oraux"],
+    grossesse: "Autorisé",
+    allaitement: "Autorisé"
+  },
+  {
+    nom: "Fluoxétine 20mg",
+    dci: "Fluoxétine",
+    classe: "Antidépresseur - ISRS",
+    categorie: "Psychiatrie",
+    dosage: "20mg",
+    forme: "Gélule",
+    voieAdministration: "Orale",
+    posologie: "20mg, 1 fois par jour le matin",
+    contrindications: ["IMAO", "Allergie à la fluoxétine", "Manie"],
+    effetsSecondaires: ["Nausées", "Insomnie", "Céphalées", "Dysfonction sexuelle"],
+    interactions: ["IMAO", "Tramadol", "Warfarine"],
+    grossesse: "Avec précaution",
+    allaitement: "Avec précaution"
+  },
+  {
+    nom: "Simvastatine 40mg",
+    dci: "Simvastatine",
+    classe: "Hypolipémiant - Statine",
+    categorie: "Cardiovasculaire",
+    dosage: "40mg",
+    forme: "Comprimé",
+    voieAdministration: "Orale",
+    posologie: "40mg, 1 fois par jour le soir",
+    contrindications: ["Maladie hépatique active", "Grossesse", "Allaitement"],
+    effetsSecondaires: ["Myalgies", "Élévation des transaminases", "Troubles digestifs"],
+    interactions: ["Clarithromycine", "Ciclosporine", "Warfarine"],
+    grossesse: "Contre-indiqué",
+    allaitement: "Contre-indiqué"
   }
 ];
 

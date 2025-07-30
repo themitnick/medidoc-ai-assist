@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" width="192" height="192">
+  <defs>
+    <radialGradient id="pwaGradient" cx="40%" cy="40%">
+      <stop offset="0%" stop-color="#60A5FA"/>
+      <stop offset="50%" stop-color="#0EA5E9"/>
+      <stop offset="100%" stop-color="#0369A1"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- Background with medical blue gradient -->
+  <rect width="192" height="192" rx="32" fill="url(#pwaGradient)"/>
+  
+  <!-- Main medical cross -->
+  <rect x="76" y="32" width="40" height="128" fill="#ffffff" rx="8"/>
+  <rect x="32" y="76" width="128" height="40" fill="#ffffff" rx="8"/>
+  
+  <!-- Central circle with stethoscope -->
+  <circle cx="96" cy="96" r="24" fill="#0EA5E9" stroke="#ffffff" stroke-width="4"/>
+  
+  <!-- Stethoscope in center -->
+  <circle cx="96" cy="108" r="8" fill="#ffffff"/>
+  <circle cx="96" cy="108" r="4" fill="#0EA5E9"/>
+  
+  <!-- Stethoscope tubes -->
+  <path d="M 88 108 Q 80 96 80 84" stroke="#ffffff" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M 104 108 Q 112 96 112 84" stroke="#ffffff" stroke-width="4" fill="none" stroke-linecap="round"/>
+  
+  <!-- Earpieces -->
+  <circle cx="80" cy="84" r="4" fill="#ffffff"/>
+  <circle cx="112" cy="84" r="4" fill="#ffffff"/>
+  
+  <!-- Small accent elements -->
+  <circle cx="48" cy="48" r="3" fill="#ffffff" opacity="0.7"/>
+  <circle cx="144" cy="48" r="3" fill="#ffffff" opacity="0.7"/>
+  <circle cx="48" cy="144" r="3" fill="#ffffff" opacity="0.7"/>
+  <circle cx="144" cy="144" r="3" fill="#ffffff" opacity="0.7"/>
+</svg>

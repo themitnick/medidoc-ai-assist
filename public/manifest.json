@@ -1,0 +1,64 @@
+{
+  "name": "MediDoc AI Assist",
+  "short_name": "MediDoc AI",
+  "description": "Application médicale complète pour la gestion des soins de santé en Côte d'Ivoire",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#0EA5E9",
+  "background_color": "#ffffff",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "fr",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "32x32",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/medical-favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-64.svg",
+      "sizes": "64x64",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["medical", "health", "productivity"],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Nouveau Patient",
+      "short_name": "Nouveau Patient",
+      "description": "Ajouter un nouveau patient",
+      "url": "/?action=nouveau-patient",
+      "icons": [
+        {
+          "src": "/medical-favicon.svg",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Interactions Médicamenteuses",
+      "short_name": "Interactions",
+      "description": "Vérifier les interactions médicamenteuses",
+      "url": "/?action=interactions",
+      "icons": [
+        {
+          "src": "/medical-favicon.svg",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ]
+}

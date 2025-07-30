@@ -1,73 +1,210 @@
-# Welcome to your Lovable project
+# MediDoc AI Assist 🏥
 
-## Project info
+## Description du Projet
 
-**URL**: https://lovable.dev/projects/873f3300-ec19-48f8-bd36-5be2c2d3c8db
+**MediDoc AI Assist** est une application médicale complète développée pour optimiser la gestion des soins de santé en Côte d'Ivoire. Cette plateforme offre des outils avancés pour la gestion des patients, la vérification des interactions médicamenteuses, et l'assistance au diagnostic médical.
 
-## How can I edit this code?
+## 🚀 Fonctionnalités Principales
 
-There are several ways of editing your application.
+### 🔐 Authentification Role-Based
+- **Médecins** : Accès complet aux dossiers, prescriptions et diagnostics
+- **Infirmiers** : Gestion des soins et planification des interventions
+- **Administrateurs** : Gestion des utilisateurs et statistiques système
+- **Patients** : Portail personnel pour consultations et historique médical
 
-**Use Lovable**
+### 📋 Gestion des Dossiers Médicaux
+- Consultation et création de dossiers patients
+- Historique médical complet avec consultations, prescriptions et examens
+- Recherche avancée et filtrage des patients
+- Export PDF des dossiers médicaux
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/873f3300-ec19-48f8-bd36-5be2c2d3c8db) and start prompting.
+### 💊 Système d'Interactions Médicamenteuses Avancé
+- **Base de données étendue** avec 8+ interactions critiques documentées
+- **Vérification en temps réel** des prescriptions
+- **Détection automatique des allergies** patient
+- **Mécanismes d'action détaillés** avec références scientifiques
+- **Alternatives thérapeutiques** suggérées
+- **Protocoles de surveillance** clinique spécialisés
 
-Changes made via Lovable will be committed automatically to this repo.
+### 🏥 Tableaux de Bord Spécialisés
+- **Dashboard Médecin** : Statistiques consultations, patients, prescriptions
+- **Dashboard Infirmier** : Planning soins, patients en charge, urgences
+- **Dashboard Admin** : Gestion utilisateurs, revenus, métriques système
+- **Portail Patient** : Rendez-vous, prescriptions, historique personnel
 
-**Use your preferred IDE**
+### 👥 Gestion des Patients
+- Ajout de nouveaux patients avec formulaire complet
+- Gestion des allergies et antécédents médicaux
+- Création de nouveaux dossiers médicaux
+- Suivi longitudinal des soins
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### 🩺 Planification des Soins Infirmiers
+- Scheduling intelligent des interventions
+- Gestion des priorités et statuts des soins
+- Suivi en temps réel des tâches infirmières
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## 🛠️ Installation et Développement
 
-Follow these steps:
+### Prérequis
+- Node.js (version 16+)
+- npm ou yarn
+- Git
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### Installation
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+```bash
+# Cloner le repository
+git clone https://github.com/themitnick/medidoc-ai-assist.git
 
-# Step 3: Install the necessary dependencies.
-npm i
+# Naviguer dans le dossier du projet
+cd medidoc-ai-assist
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Installer les dépendances
+npm install
+
+# Démarrer le serveur de développement
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### Scripts Disponibles
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```bash
+# Développement avec hot-reload
+npm run dev
 
-**Use GitHub Codespaces**
+# Build de production
+npm run build
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+# Prévisualisation du build
+npm run preview
 
-## What technologies are used for this project?
+# Linting du code
+npm run lint
+```
 
-This project is built with:
+## 🏗️ Architecture Technique
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Technologies Utilisées
 
-## How can I deploy this project?
+- **Frontend Framework** : React 18 avec TypeScript
+- **Build Tool** : Vite pour un développement rapide
+- **UI Components** : shadcn/ui avec Tailwind CSS
+- **State Management** : React Hooks (useState, useEffect)
+- **Routing** : Navigation conditionnelle basée sur les rôles
+- **Icons** : Lucide React pour une iconographie cohérente
 
-Simply open [Lovable](https://lovable.dev/projects/873f3300-ec19-48f8-bd36-5be2c2d3c8db) and click on Share -> Publish.
+### Structure du Projet
 
-## Can I connect a custom domain to my Lovable project?
+```
+src/
+├── components/           # Composants React réutilisables
+│   ├── ui/              # Composants UI de base (shadcn/ui)
+│   ├── AIAssistant.tsx  # Assistant IA pour diagnostics
+│   ├── Dashboard.tsx    # Tableaux de bord par rôle
+│   ├── DossiersMedicaux.tsx  # Gestion dossiers médicaux
+│   ├── InteractionsManager.tsx  # Système interactions médicamenteuses
+│   ├── LoginForm.tsx    # Authentification utilisateurs
+│   ├── NouveauPatient.tsx     # Formulaire nouveau patient
+│   ├── PatientPortail.tsx     # Interface patients
+│   ├── Parametres.tsx   # Configuration système
+│   └── PlanificationSoins.tsx # Planning infirmier
+├── data/                # Données mockées et types
+│   └── mockData.ts      # Base de données de test
+├── hooks/               # Hooks React personnalisés
+├── lib/                 # Utilitaires et helpers
+├── pages/              # Pages principales
+├── types/              # Définitions TypeScript
+└── main.tsx            # Point d'entrée application
+```
 
-Yes, you can!
+## 🔒 Sécurité et Conformité
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+### Gestion des Rôles
+- **Contrôle d'accès basé sur les rôles** (RBAC)
+- **Permissions granulaires** par fonctionnalité
+- **Sessions sécurisées** avec validation côté client
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+### Protection des Données Médicales
+- **Chiffrement des données sensibles** (à implémenter en production)
+- **Logs d'audit** pour traçabilité des actions
+- **Respect du secret médical** avec accès restreint
+
+### Conformité Réglementaire
+- **Localisation Côte d'Ivoire** : Noms, adresses, numéros
+- **Fuseau horaire** : Africa/Abidjan
+- **Standards médicaux** : Références ANSM, EMA, OMS
+
+## 🚀 Déploiement
+
+### Build de Production
+
+```bash
+# Créer un build optimisé
+npm run build
+
+# Tester le build localement
+npm run preview
+```
+
+### Variables d'Environnement
+
+```env
+# Exemple de configuration
+VITE_API_URL=https://api.medidoc.ci
+VITE_APP_VERSION=1.0.0
+VITE_ENVIRONMENT=production
+```
+
+### Déploiement Recommandé
+- **Hosting** : Vercel, Netlify ou serveur privé
+- **CDN** : Cloudflare pour performances optimales
+- **SSL** : Certificat obligatoire pour données médicales
+- **Backup** : Sauvegarde quotidienne des données
+
+## 🤝 Contribution
+
+### Guidelines de Développement
+1. **Fork** le repository
+2. **Créer une branche** pour la feature (`git checkout -b feature/nouvelle-fonctionnalite`)
+3. **Commiter** les changements (`git commit -m 'Ajout nouvelle fonctionnalité'`)
+4. **Push** vers la branche (`git push origin feature/nouvelle-fonctionnalite`)
+5. **Créer une Pull Request**
+
+### Standards de Code
+- **TypeScript strict** pour la sécurité des types
+- **ESLint** pour la qualité du code
+- **Prettier** pour le formatage uniforme
+- **Commentaires JSDoc** pour la documentation
+
+## 📞 Support et Contact
+
+### Équipe de Développement
+- **Développeur Principal** : [@themitnick](https://github.com/themitnick)
+- **Repository** : [medidoc-ai-assist](https://github.com/themitnick/medidoc-ai-assist)
+
+### Rapport de Bugs
+Créer une issue sur GitHub avec :
+- Description détaillée du problème
+- Étapes de reproduction
+- Environnement (OS, navigateur, version)
+- Screenshots si pertinent
+
+## 📄 Licence
+
+Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
+
+## 🔮 Roadmap
+
+### Prochaines Fonctionnalités
+- [ ] **API Backend** : Intégration base de données réelle
+- [ ] **Télémédecine** : Consultations vidéo intégrées
+- [ ] **IA Diagnostique** : Assistant IA plus avancé
+- [ ] **Mobile App** : Application React Native
+- [ ] **Laboratoire** : Gestion résultats analyses
+- [ ] **Pharmacie** : Interface officines partenaires
+- [ ] **Statistiques Avancées** : Analytics médicales
+- [ ] **Multi-langues** : Support français/anglais/langues locales
+
+---
+
+**MediDoc AI Assist** - Révolutionner les soins de santé en Côte d'Ivoire 🇨🇮
