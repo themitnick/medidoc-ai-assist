@@ -70,6 +70,44 @@ export interface MedicamentInfo {
   allaitement: "Autorisé" | "Avec précaution" | "Contre-indiqué" | "Inconnu";
 }
 
+export interface RendezVous {
+  id: string;
+  patientId: string;
+  medecinId: string;
+  date: string;
+  heure: string;
+  motif: string;
+  type: "Consultation" | "Contrôle" | "Urgence" | "Téléconsultation";
+  statut: "En attente" | "Confirmé" | "Annulé" | "Terminé";
+  notes?: string;
+  dureeEstimee: number; // en minutes
+  patientNom?: string;
+  patientPrenom?: string;
+  medecinNom?: string;
+  medecinPrenom?: string;
+}
+
+export interface CreneauDisponible {
+  date: string;
+  heures: string[];
+}
+
+export interface DossierMedical {
+  id: string;
+  patientId: string;
+  dateCreation: string;
+  dateModification: string;
+  antecedentsFamiliaux: string[];
+  antecedentsPersonnels: string[];
+  allergies: string[];
+  traitements: string[];
+  vaccinations: string[];
+  examensComplementaires: any[];
+  hospitalisations: any[];
+  notes: string;
+  medecinTraitant?: string;
+}
+
 export const mockPatients: Patient[] = [
   {
     id: "1",
@@ -403,3 +441,161 @@ export const mockStats = {
   prescriptionsActives: 189,
   alertesInteractions: 5
 };
+
+export const mockRendezVous: RendezVous[] = [
+  {
+    id: "rdv-001",
+    patientId: "1",
+    medecinId: "med-001",
+    date: "2025-01-30",
+    heure: "09:00",
+    motif: "Contrôle diabète",
+    type: "Contrôle",
+    statut: "Confirmé",
+    dureeEstimee: 30,
+    patientNom: "Kouamé",
+    patientPrenom: "Adjoua",
+    medecinNom: "Dr. Koné",
+    medecinPrenom: "Ibrahim"
+  },
+  {
+    id: "rdv-002",
+    patientId: "2",
+    medecinId: "med-001",
+    date: "2025-01-30",
+    heure: "10:30",
+    motif: "Consultation asthme",
+    type: "Consultation",
+    statut: "En attente",
+    dureeEstimee: 45,
+    patientNom: "Traoré",
+    patientPrenom: "Mamadou",
+    medecinNom: "Dr. Koné",
+    medecinPrenom: "Ibrahim"
+  },
+  {
+    id: "rdv-003",
+    patientId: "3",
+    medecinId: "med-002",
+    date: "2025-01-31",
+    heure: "14:00",
+    motif: "Suivi migraine",
+    type: "Contrôle",
+    statut: "Confirmé",
+    dureeEstimee: 30,
+    patientNom: "Ouattara",
+    patientPrenom: "Fatou",
+    medecinNom: "Dr. Bakayoko",
+    medecinPrenom: "Aminata"
+  }
+];
+
+export const mockCreneauxDisponibles: CreneauDisponible[] = [
+  // Janvier 2025
+  {
+    date: "2025-01-31",
+    heures: ["08:00", "08:30", "11:00", "11:30", "15:00", "15:30", "16:00"]
+  },
+  // Février 2025
+  {
+    date: "2025-02-01",
+    heures: ["09:00", "09:30", "10:00", "14:00", "14:30", "16:30"]
+  },
+  {
+    date: "2025-02-03",
+    heures: ["08:30", "09:00", "10:30", "11:00", "14:00", "15:00", "16:00", "16:30"]
+  },
+  {
+    date: "2025-02-04",
+    heures: ["08:00", "08:30", "09:30", "14:30", "15:00", "15:30"]
+  },
+  {
+    date: "2025-02-06",
+    heures: ["09:00", "10:00", "11:00", "14:00", "15:00", "16:00"]
+  },
+  {
+    date: "2025-02-07",
+    heures: ["08:30", "09:00", "11:30", "14:30", "15:30", "16:30"]
+  },
+  {
+    date: "2025-02-10",
+    heures: ["08:00", "09:00", "10:00", "10:30", "14:00", "15:00", "16:00"]
+  },
+  {
+    date: "2025-02-11",
+    heures: ["08:30", "09:30", "11:00", "14:30", "15:30"]
+  },
+  {
+    date: "2025-02-13",
+    heures: ["09:00", "10:30", "11:30", "14:00", "15:00", "16:30"]
+  },
+  {
+    date: "2025-02-14",
+    heures: ["08:00", "08:30", "09:00", "15:00", "15:30", "16:00"]
+  },
+  {
+    date: "2025-02-17",
+    heures: ["08:30", "09:00", "10:00", "14:00", "14:30", "16:00", "16:30"]
+  },
+  {
+    date: "2025-02-18",
+    heures: ["09:00", "10:30", "11:00", "15:00", "15:30"]
+  },
+  {
+    date: "2025-02-20",
+    heures: ["08:00", "09:30", "10:00", "14:30", "16:00"]
+  },
+  {
+    date: "2025-02-21",
+    heures: ["08:30", "09:00", "11:30", "14:00", "15:30", "16:30"]
+  },
+  {
+    date: "2025-02-24",
+    heures: ["09:00", "10:00", "11:00", "14:00", "15:00", "16:00"]
+  },
+  {
+    date: "2025-02-25",
+    heures: ["08:00", "08:30", "10:30", "14:30", "15:00"]
+  },
+  {
+    date: "2025-02-27",
+    heures: ["09:00", "09:30", "11:00", "15:30", "16:00", "16:30"]
+  },
+  {
+    date: "2025-02-28",
+    heures: ["08:30", "10:00", "11:30", "14:00", "14:30", "15:00"]
+  }
+];
+
+export const mockDossiersMedicaux: DossierMedical[] = [
+  {
+    id: "dos-001",
+    patientId: "1",
+    dateCreation: "2023-05-15",
+    dateModification: "2025-01-15",
+    antecedentsFamiliaux: ["Diabète type 2 (mère)", "Hypertension (père)"],
+    antecedentsPersonnels: ["Hypertension artérielle depuis 2020", "Diabète type 2 depuis 2021"],
+    allergies: ["Pénicilline", "Aspirine"],
+    traitements: ["Metformine 850mg 2x/j", "Lisinopril 10mg 1x/j"],
+    vaccinations: ["COVID-19 (3 doses)", "Grippe 2024", "Tétanos 2023"],
+    examensComplementaires: [],
+    hospitalisations: [],
+    notes: "Patiente compliant au traitement. Glycémie bien contrôlée.",
+    medecinTraitant: "Dr. Koné Ibrahim"
+  },
+  {
+    id: "dos-002",
+    patientId: "2",
+    dateCreation: "2022-03-10",
+    dateModification: "2025-01-10",
+    antecedentsFamiliaux: ["Asthme (frère)"],
+    antecedentsPersonnels: ["Asthme bronchique depuis l'enfance"],
+    allergies: ["Latex"],
+    traitements: ["Ventoline en cas de crise", "Symbicort 2 bouffées 2x/j"],
+    vaccinations: ["COVID-19 (2 doses)", "Grippe 2024"],
+    examensComplementaires: [],
+    hospitalisations: [],
+    notes: "Asthme bien contrôlé avec traitement de fond.",
+    medecinTraitant: "Dr. Koné Ibrahim"
+  }
+];

@@ -9,7 +9,9 @@ import { DossiersMedicaux } from "@/components/DossiersMedicaux";
 import { Parametres } from "@/components/Parametres";
 import { PatientPortail } from "@/components/PatientPortail";
 import { PlanificationSoins } from "@/components/PlanificationSoins";
+import { GestionRendezVous } from "@/components/GestionRendezVous";
 import { User } from "@/types/auth";
+import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 
 const Index = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -55,6 +57,8 @@ const Index = () => {
         return <Dashboard userRole={user.role} />;
       case "patients":
         return <PatientsManager />;
+      case "rendezvous":
+        return <GestionRendezVous />;
       case "diagnostic":
         return user.role === "medecin" ? <AIAssistant /> : <div className="p-6"><h2 className="text-2xl font-bold">Accès non autorisé</h2></div>;
       case "interactions":
@@ -71,21 +75,31 @@ const Index = () => {
   };
 
   if (!user) {
-    return <LoginForm onLogin={handleLogin} />;
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <LoginForm onLogin={handleLogin} />
+      </div>
+    );
   }
 
   return (
-    <div className="flex h-screen bg-background">
-      <Navigation 
-        activeTab={activeTab} 
-        onTabChange={setActiveTab} 
-        onLogout={handleLogout} 
-        userRole={user.role}
-      />
-      <main className="flex-1 overflow-auto">
-        {renderContent()}
-      </main>
-    </div>
+    <SidebarProvider>
+      <div className="flex min-h-screen w-full bg-background">
+        <Navigation 
+          activeTab={activeTab} 
+          onTabChange={setActiveTab} 
+          onLogout={handleLogout} 
+          userRole={user.role}
+        />
+        <SidebarInset className="flex-1 flex flex-col">
+          <main className="flex-1 overflow-auto">
+            <div className="p-2 sm:p-4 lg:p-6">
+              {renderContent()}
+            </div>
+          </main>
+        </SidebarInset>
+      </div>
+    </SidebarProvider>
   );
 };
 

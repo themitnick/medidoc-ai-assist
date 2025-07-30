@@ -65,23 +65,23 @@ export const AIAssistant = () => {
   };
 
   return (
-    <div className="p-6 space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="p-4 md:p-6 space-y-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-3xl font-bold tracking-tight">Assistant IA Diagnostic</h2>
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Assistant IA Diagnostic</h2>
           <p className="text-muted-foreground">
             Analyse intelligente des symptômes et suggestions diagnostiques
           </p>
         </div>
-        <Badge variant="outline" className="gap-2">
+        <Badge variant="outline" className="gap-2 w-fit">
           <Brain className="w-4 h-4" />
           IA Médicale v2.1
         </Badge>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-3">
+      <div className="grid gap-6 grid-cols-1 xl:grid-cols-3">
         {/* Symptom Input */}
-        <div className="lg:col-span-1">
+        <div className="xl:col-span-1">
           <Card className="shadow-card">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -145,7 +145,7 @@ export const AIAssistant = () => {
         </div>
 
         {/* Analysis Results */}
-        <div className="lg:col-span-2">
+        <div className="xl:col-span-2">
           {analysis ? (
             <div className="space-y-6">
               {/* Diagnostic Suggestions */}

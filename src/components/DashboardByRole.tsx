@@ -144,15 +144,15 @@ export const Dashboard = ({ userRole }: DashboardProps) => {
   };
 
   return (
-    <div className="p-6 space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="p-3 sm:p-4 md:p-6 space-y-4 sm:space-y-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4">
         <div>
-          <h2 className="text-3xl font-bold tracking-tight">{getDashboardTitle()}</h2>
-          <p className="text-muted-foreground">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight">{getDashboardTitle()}</h2>
+          <p className="text-sm sm:text-base text-muted-foreground">
             {getDashboardDescription()}
           </p>
         </div>
-        <Badge variant="secondary" className="text-sm">
+        <Badge variant="secondary" className="text-xs sm:text-sm w-fit">
           {new Date().toLocaleDateString('fr-FR', { 
             weekday: 'long', 
             year: 'numeric', 
@@ -163,19 +163,19 @@ export const Dashboard = ({ userRole }: DashboardProps) => {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
         {statCards.map((stat, index) => {
           const Icon = stat.icon;
           return (
             <Card key={index} className="hover:shadow-lg transition-shadow">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">
+                <CardTitle className="text-xs sm:text-sm font-medium">
                   {stat.title}
                 </CardTitle>
                 <Icon className={`h-4 w-4 ${stat.color}`} />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">{stat.value}</div>
+                <div className="text-lg sm:text-2xl font-bold">{stat.value}</div>
                 <p className="text-xs text-muted-foreground">
                   {stat.trend}
                 </p>
@@ -187,7 +187,7 @@ export const Dashboard = ({ userRole }: DashboardProps) => {
 
       {/* Role-specific content */}
       {userRole === "medecin" && (
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-4 sm:gap-6 grid-cols-1 lg:grid-cols-2">
           {/* Recent Consultations */}
           <Card>
             <CardHeader>
@@ -244,7 +244,7 @@ export const Dashboard = ({ userRole }: DashboardProps) => {
       )}
 
       {userRole === "infirmier" && (
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-6 grid-cols-1 lg:grid-cols-2">
           {/* Soins à effectuer */}
           <Card>
             <CardHeader>
@@ -254,19 +254,19 @@ export const Dashboard = ({ userRole }: DashboardProps) => {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="flex items-center justify-between p-3 bg-yellow-50 rounded-lg border border-yellow-200">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between p-3 bg-yellow-50 rounded-lg border border-yellow-200 gap-2">
                 <div>
                   <p className="font-medium">Adjoua Kouamé - Pansement</p>
                   <p className="text-sm text-muted-foreground">Chambre 204 - 14:00</p>
                 </div>
-                <Badge variant="destructive" className="text-xs">Urgent</Badge>
+                <Badge variant="destructive" className="text-xs w-fit">Urgent</Badge>
               </div>
-              <div className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between p-3 bg-muted/50 rounded-lg gap-2">
                 <div>
                   <p className="font-medium">Mamadou Traoré - Prise de tension</p>
                   <p className="text-sm text-muted-foreground">Chambre 101 - 15:30</p>
                 </div>
-                <Badge variant="secondary" className="text-xs">Programmé</Badge>
+                <Badge variant="secondary" className="text-xs w-fit">Programmé</Badge>
               </div>
             </CardContent>
           </Card>
@@ -280,12 +280,12 @@ export const Dashboard = ({ userRole }: DashboardProps) => {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg border border-blue-200">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between p-3 bg-blue-50 rounded-lg border border-blue-200 gap-2">
                 <div>
                   <p className="font-medium">Kouassi Bamba - Doliprane 1g</p>
                   <p className="text-sm text-muted-foreground">Chambre 305 - 14:30</p>
                 </div>
-                <Badge variant="default" className="text-xs">À distribuer</Badge>
+                <Badge variant="default" className="text-xs w-fit">À distribuer</Badge>
               </div>
             </CardContent>
           </Card>
@@ -293,7 +293,7 @@ export const Dashboard = ({ userRole }: DashboardProps) => {
       )}
 
       {userRole === "admin" && (
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-6 grid-cols-1 lg:grid-cols-2">
           {/* Gestion utilisateurs */}
           <Card>
             <CardHeader>

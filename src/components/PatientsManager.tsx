@@ -26,10 +26,10 @@ export const PatientsManager = () => {
   };
 
   return (
-    <div className="p-6 space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="p-4 md:p-6 space-y-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-3xl font-bold tracking-tight">Gestion des Patients</h2>
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Gestion des Patients</h2>
           <p className="text-muted-foreground">
             {patients.length} patients enregistrés
           </p>
@@ -37,9 +37,9 @@ export const PatientsManager = () => {
         <NouveauPatient onPatientAdded={handlePatientAdded} />
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-3">
+      <div className="grid gap-6 grid-cols-1 xl:grid-cols-3">
         {/* Patients List */}
-        <div className="lg:col-span-1">
+        <div className="xl:col-span-1">
           <Card className="shadow-card">
             <CardHeader>
               <CardTitle>Liste des Patients</CardTitle>
@@ -84,7 +84,7 @@ export const PatientsManager = () => {
         </div>
 
         {/* Patient Details */}
-        <div className="lg:col-span-2">
+        <div className="xl:col-span-2">
           {selectedPatient ? (
             <div className="space-y-6">
               {/* Patient Info */}
@@ -96,33 +96,33 @@ export const PatientsManager = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid gap-4 md:grid-cols-2">
+                  <div className="grid gap-4 grid-cols-1 lg:grid-cols-2">
                     <div className="space-y-3">
-                      <div className="flex items-center gap-2">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
                         <span className="font-medium">Date de naissance:</span>
                         <span>{new Date(selectedPatient.dateNaissance).toLocaleDateString('fr-FR')}</span>
                       </div>
-                      <div className="flex items-center gap-2">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
                         <span className="font-medium">Âge:</span>
                         <span>{calculateAge(selectedPatient.dateNaissance)} ans</span>
                       </div>
-                      <div className="flex items-center gap-2">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
                         <span className="font-medium">Sexe:</span>
                         <span>{selectedPatient.sexe === "M" ? "Masculin" : "Féminin"}</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <Phone className="w-4 h-4 text-muted-foreground" />
-                        <span>{selectedPatient.telephone}</span>
+                        <span className="break-all">{selectedPatient.telephone}</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <Mail className="w-4 h-4 text-muted-foreground" />
-                        <span>{selectedPatient.email}</span>
+                        <span className="break-all">{selectedPatient.email}</span>
                       </div>
                     </div>
                     <div className="space-y-3">
                       <div>
                         <span className="font-medium">Numéro Sécurité Sociale:</span>
-                        <p className="font-mono text-sm">{selectedPatient.numeroSecu}</p>
+                        <p className="font-mono text-sm break-all">{selectedPatient.numeroSecu}</p>
                       </div>
                       <div>
                         <span className="font-medium">Adresse:</span>
@@ -134,7 +134,7 @@ export const PatientsManager = () => {
               </Card>
 
               {/* Medical Info */}
-              <div className="grid gap-6 md:grid-cols-3">
+              <div className="grid gap-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
                 {/* Allergies */}
                 <Card className="shadow-card">
                   <CardHeader>
